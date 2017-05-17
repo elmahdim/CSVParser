@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSVParser</title>
+    <title>Document</title>
     <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
 </head>
 <body>
@@ -52,13 +52,15 @@
 
         $inputCSV.addEventListener('change', fileHandler, false);
         function fileHandler() {
+          $tbody.innerHTML = '';
+          $thead.innerHTML = '';
           if (typeof (FileReader) != "undefined") {
             var totalCols = 0;
             var reader = new FileReader();
             reader.onload = function (e) {
                 rows = e.target.result.split("\n");
                 rows.shift();
-                for (var i = 0; i < rows.length; i++) {
+                for (var i = 0; i < rows.filter(Boolean).length; i++) {
                     var row = $tbody.insertRow(-1);
                     var cells = rows[i].split(",");
                     totalCols = cells.length;
