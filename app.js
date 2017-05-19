@@ -157,8 +157,11 @@ document.addEventListener('change', function (e) {
         }
       }
       for (var i = 0; i < tbodyRow.length; i++) {
-        var cell = tbodyRow[i].querySelectorAll('td')
-        generatedData.push({[_this.value] : cell[tdIndex].innerText});
+        var cell = tbodyRow[i].querySelectorAll('td');
+        if (generatedData[i] == undefined) {
+          generatedData[i] = {};
+        }
+        generatedData[i][_this.value] = cell[tdIndex].innerText;
       }
     }
 }, false);
